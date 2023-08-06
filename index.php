@@ -2,13 +2,11 @@
 $DATA = array_merge($_GET, $_POST);
 if (isset($DATA['group'])) {
 	$getGroup = $DATA['group'];
-}
-else
+} else
 	$getGroup = 'blog';
 if (isset($DATA['timeframe'])) {
 	$getTimeframe = $DATA['timeframe'];
-}
-else
+} else
 	$getTimeframe = 36000;
 if (isset($DATA['newsurl'])) {
 	$getNewsUrl = urldecode($DATA['newsurl']);
@@ -17,21 +15,24 @@ if (isset($DATA['newsurl'])) {
 }
 ?>
 <html>
+
 <head>
-		<title>RSS Feeds</title>
-		<link rel="stylesheet" type="text/css" href="./styles.css"/>
-		<script src="./script.js"></script>
-		<?php if (isset($DATA['refresh'])) { ?><meta http-equiv="refresh" content="<?= $DATA['refresh'] ?>"><?php } ?>
+	<title>RSS Feeds</title>
+	<link rel="stylesheet" type="text/css" href="./styles.css" />
+	<script src="./script.js"></script>
+	<?php if (isset($DATA['refresh'])) { ?>
+		<meta http-equiv="refresh" content="<?= $DATA['refresh'] ?>"><?php } ?>
 </head>
+
 <body>
-		<?php include ('incl/functions.php'); ?>
-<main>
-		<aside>
+	<?php include('incl/functions.php'); ?>
+	<main>
+		<aside style="display:none">
 			<iframe name="nieuwsartikel" width="860" height="600"></iframe>
 		</aside>
-	<nav>
-		<form>
-			<?php
+		<nav>
+			<form>
+				<?php
 				echo "Sorteer:
 \t\t\t\t\t<select name=\"group\">
 \t\t\t\t\t\t<option value=\"blog\"" . (($getGroup == 'blog') ? ' selected' : '') . "\">Blog</option>
@@ -51,15 +52,16 @@ if (isset($DATA['newsurl'])) {
 \t\t\t\t\t</select>";
 				echo 'Ververs: <input type="checkbox" name="refresh" id="refreshTimeFrame" value="' . $getTimeframe . '" ' . ((isset($DATA['refresh']) > 0) ? ' checked' : '') . '/>';
 				echo '<input type="submit" value="Filter"></input>';
-			?>
-		</form>
-	</nav>
-	<?php
+				?>
+			</form>
+		</nav>
+		<?php
 		echo getFeeds($getGroup, $getTimeframe);
-	?>
-</main>
-<script>
+		?>
+	</main>
+	<script>
 
-</script>
+	</script>
 </body>
+
 </html>
