@@ -12,28 +12,16 @@ function pp($content, $bg = 'lightgrey', $fg = 'black')
 
 function getFeedsArr()
 {
-	$feeds = array(
-		'https://hackernoon.com/feed',
-		// 'https://codeburst.io/feed', // fout of leeg?
-		'https://medium.com/feed/@upekshadilshan000',
-		// 'https://medium.com/feed/@zac_heisey', // fout of leeg?
-		'https://www.geeksforgeeks.org/category/javascript/feed/',
-		// 'https://www.geeksforgeeks.org/tag/picked/feed/',
-		// 'https://bitsofco.de/rss', // "no entries" , goed?
-		// 'https://developer.mozilla.org/en-US/blog/rss.xml',// fout of leeg?
-		// 'https://infoworld.com/index.rss',
-		// 'https://news.vuejs.org/feed.xml',// fout of leeg?
-		// 'https://www.smashingmagazine.com/feed',
-		// 'https://davidwalsh.name/feed',// fout of leeg?
-		// 'https://www.reddit.com/r/vuejs.rss',// fout of leeg?
-		// 'https://github.com/impressivewebs/frontend-feeds#more-front-end-bloggers',// fout of leeg?
-		// 'https://stackoverflow.com/questions/tagged/?tagnames=css&sort=newest',// fout of leeg?
-		// non working format
-		// 'https://www.linux.org/articles/index.rss',
-		// 'https://www.reddit.com/r/reactjs.rss',
-		// 'https://blog.chromium.org/feeds/posts/default'
-	);
-	return $feeds;
+	$retFeedsArr = array();
+	$feedsData = file_get_contents('incl/feeds.json');
+	$feedsObjects = json_decode($feedsData);
+
+	foreach ($feedsObjects as $key => $val) {
+		if ($val->url != '') {
+			$retFeedsArr[] .= $val->url;
+		}
+	}
+	return $retFeedsArr;
 }
 
 function expandButton($count)

@@ -1,0 +1,21 @@
+[
+	{
+		"name": "Hacker noon",
+		"url": "https://hackernoon.com/feed",
+		"refresh": 1337
+	},
+	{
+		"name": "medium shan000",
+		"url": "https://medium.com/feed/@upekshadilshan000",
+		"refresh": 1337
+	},
+	{
+		"name": "geeksforgeeks",
+		"url": "https://www.geeksforgeeks.org/category/javascript/feed/",
+		"refresh": 1337
+	},
+	{ "name": "", "url": "", "refresh": 1337 },
+	{ "name": "", "url": "", "refresh": 1337 },
+	{ "name": "", "url": "", "refresh": 1337 },
+	{ "name": "", "url": "", "refresh": 1337 }
+]
