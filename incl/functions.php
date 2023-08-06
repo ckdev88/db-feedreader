@@ -67,7 +67,7 @@ function getFeeds($groupby, $timeframe)
 	if ($groupby == 'datum') {
 		$entries = array();
 		foreach ($feeds as $feed) {
-			$xml = simplexml_load_file($feed, 'SimpleXMLElement', LIBXML_NOCDATA);
+			$xml = simplexml_load_file($feed, "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
 			$entries = array_merge($entries, $xml->xpath('//item'));
 		}
 
