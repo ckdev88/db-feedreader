@@ -43,27 +43,26 @@ function expandButton($count)
 
 function msgDescription($count, $date, $host, $title, $description, $link)
 {
-	return "
-\t<div class=\"msg-description\" id=\"msg-description" . $count . "\">
-\t\t<div class=\"pubdate\">" . $date . "</div>
-\t\t<span class=\"host\">" . $host . "</span>
-\t\t<h2>" . $title . "OO</h2>
-\t\t" . html_entity_decode($description, ENT_QUOTES, 'UTF-8') . "<br/>
-\t\t<br/>
-\t\t<a href=\"" . $link . '" target="nieuwsartikel">&rarr; Verder op ' . $host . "</a>
-\t</div>";
+	return '<div class="msg-description\" id="msg-description' . $count . '>
+<div class="pubdate">' . $date . '</div>
+<span class="host">' . $host . '</span>
+<h2>' . $title . '</h2>
+' . html_entity_decode($description, ENT_QUOTES, 'UTF-8') . '<br/>
+<br/>
+<a href="' . $link . '" target="nieuwsartikel">&rarr; Verder op ' . $host . '</a>
+</div>';
 }
 
 function msgLink($link, $date, $title, $host = '')
 {
-	$html = '<a href="' . $link . "\" target=\"nieuwsartikel\" style=\"font-weight:normal\">
-\t\t<div class=\"pubdate\">" . $date . "</div>
-\t\t<div>" . $title;
+	$html = '<a href="' . $link . ' target="nieuwsartikel" style="font-weight:normal">';
+	$html .= '<div class="pubdate">' . $date . '</div>';
+	$html .= '<div>' . $title;
 	if ($host != '') {
 		$html .= '<span class="host"> - ' . $host . '</span>';
 	}
-	$html .= "</div>
-\t</a>";
+	$html .= '</div>';
+	$html .= '</a>';
 	return $html;
 }
 
@@ -138,9 +137,7 @@ function getFeeds($groupby, $timeframe)
 						if (strtotime($pubDate) > $timeframe) {
 							if ($msgVal->title != '') {
 								if ($opencount == 0) {
-									$html .= "<div class=\"blog\">
-\t\t\t\t\t\t\t\t\t\t\t\t<h2>" . $blogTitle . ' - ' . str_replace('www.', '', parse_url($msgVal->link)['host']) . "</h2>
-\t\t\t\t\t\t\t\t\t\t\t\t<ul>";
+									$html .= '<div class="blog"><h2>' . $blogTitle . ' - ' . str_replace('www.', '', parse_url($msgVal->link)['host']) . '</h2><ul>';
 									$opencount = 1;
 								}
 
