@@ -6,7 +6,7 @@ if(isset($DATA['group'])){
 else $getGroup='blog';
 if(isset($DATA['timeframe'])){
 	$getTimeframe=$DATA['timeframe'];
-}
+} 
 else $getTimeframe=36000;
 if(isset($DATA['newsurl'])){
 	$getNewsUrl=urldecode($DATA['newsurl']);

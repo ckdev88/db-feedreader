@@ -36,7 +36,7 @@ function getFeedsArr() {
 
 function expandButton($count){
 	return '<button href="#" onclick="javascript:expand('.$count.')" id="msg-description-button'.$count.'">+</button>';
-}
+} 
 function msgDescription($count,$date,$host,$title,$description,$link){
 	return '
 	<div class="msg-description" id="msg-description'.$count.'">
@@ -47,8 +47,8 @@ function msgDescription($count,$date,$host,$title,$description,$link){
 		<br/>
 		<a href="'.$link.'" target="nieuwsartikel">&rarr; Verder op '.$host.'</a>
 	</div>';
-}
-
+} 
+ 
 function msgLink($link,$date,$title,$host=''){
 	$html='<a href="'.$link.'" target="nieuwsartikel" style="font-weight:normal">
 		<div class="pubdate">'.$date.'</div>
