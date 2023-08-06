@@ -11,7 +11,7 @@ if (isset($DATA['timeframe'])) {
 if (isset($DATA['newsurl'])) {
 	$getNewsUrl = urldecode($DATA['newsurl']);
 } else {
-	$getNewsUrl = '';
+	$getNewsUrl = false;
 }
 ?>
 <html>
@@ -27,11 +27,7 @@ if (isset($DATA['newsurl'])) {
 <body>
 	<?php include('incl/functions.php'); ?>
 	<main>
-		<article id="nieuwsartikel">News content:
-			<?php
-			echo getArticle('https://hackernoon.com/kennedys-dreams');
-			?>
-		</article>
+		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
 		<nav>
 			<?php
 			echo "Sorteer:

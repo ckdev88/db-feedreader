@@ -33,7 +33,7 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 {
 	$html = '';
 	$html .= '<div class="msg-description" id="msg-description' . $count . '">';
-	$html .= '<div class="pubdate">' . $date . '</div>';
+	$html .= '<div class="pubdate">pubdate:' . $date . '</div>';
 	$html .= '<span class="host">' . $host . '</span>';
 	$html .= '<h2>' . $title . '</h2>';
 	$html .= html_entity_decode($description, ENT_QUOTES, 'UTF-8');
@@ -45,7 +45,7 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 
 function msgLink($link, $date, $title, $host = '')
 {
-	$html = '<a href="' . $link . ' target="nieuwsartikel" style="font-weight:normal">';
+	$html = '<a href="?newsurl=' . $link . ' target="nieuwsartikel" style="font-weight:normal">';
 	$html .= '<div class="pubdate">' . $date . '</div>';
 	$html .= '<div>' . $title;
 	if ($host != '') {
@@ -150,10 +150,11 @@ function getFeeds($groupby, $timeframe)
 	}
 	return $html;
 }
-function getArticle($url = '')
+function getArticle($url = false)
 {
+	if (!$url) return '';
 	$lump = file_get_contents($url);
-	$start_tag = '"markdown":';
+	$start_tag = '"markdown":"';
 	$end_tag = '","';
 
 	$startpos = strpos($lump, $start_tag) + strlen($start_tag);
@@ -174,7 +175,10 @@ function getArticle($url = '')
 	$html = str_replace('\n', '</p>', $html); // ruimen
 	$html = str_replace('![](', '<p style="display:none;">![](', $html); //verbergen
 	$html = str_replace('</p>##', '<p style="font-weight:bold;font-size:1.25em">', $html); //verbergen
-
+	$html = str_replace('\\\</p>', '', $html); //verbergen
+	$html = str_replace('</p>#<p', '</p><p', $html); //verbergen
+	$html = str_replace('</p>#<p', '</p><p', $html); //verbergen
+	$html = str_replace('</p><p>[   <p', '</p><p', $html); //verbergen
 
 	return $html;
 }
