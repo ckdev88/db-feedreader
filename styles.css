@@ -5,15 +5,13 @@ h2{font-size:1rem;font-weight:bold;padding:.5rem;background:#222;color:#fff;bord
 h3{font-size:1rem;font-weight:bold;padding:0;margin:0;}
 a{color:#fff;}
 body{max-width:1440px;padding:1rem;}
-/* main{max-width:1440px;padding:1rem;} */
 nav{max-width:40rem;position:relative;}
 form{padding-left:.5rem;}
 a{cursor:pointer}
 select{margin-right:1rem}
 select option,select input{display:inline-block;}
 
-aside{width:860px;position:fixed;top:1rem;left:45rem;}
-aside>iframe{float:right;border:1px dotted #999;padding:0;margin:0;height:calc(100vh - 2rem);background:#eee}
+article{width:860px;float:right;margin-left:3rem;}
 
 p{margin-bottom:1em;}
 .blog{max-width:calc(1440px - 860px);}

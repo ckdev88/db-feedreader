@@ -98,11 +98,10 @@ function getFeeds($groupby, $timeframe)
 
 		$html .= '</ul>';
 	} else {  // echo 'hier de ELSE: sort per blog';
-		pp($feeds, 'red', 'yellow');
 		$channels = array();
 		foreach ($feeds as $feed) {
 			if ($count < 100) {
-				$xml = simplexml_load_file($feed);
+				$xml = simplexml_load_file($feed, "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
 				$channels = array_merge($channels, $xml->xpath('//channel'));
 			}
 			$count += 1;
@@ -149,6 +148,34 @@ function getFeeds($groupby, $timeframe)
 <?php
 		}
 	}
+	return $html;
+}
+function getArticle($url = '')
+{
+	$lump = file_get_contents($url);
+	$start_tag = '"markdown":';
+	$end_tag = '","';
+
+	$startpos = strpos($lump, $start_tag) + strlen($start_tag);
+	if ($startpos !== false) {
+		$endpos = strpos($lump, $end_tag, $startpos);
+		if ($endpos !== false) {
+			$html = substr($lump, $startpos, $endpos - $startpos);
+		}
+	}
+	// replaces, approved for hackernoon
+	$html = str_replace('\n\n', '</p>', $html); // goed
+	$html = str_replace('\\\\\n\u003e', '<p style="border-left:.5em solid yellow;padding-left:3em;font-size:1.25em;font-style:italic;">',  $html); // quote: goed
+	$html = str_replace('\\\n### ', '<p class="hekje-3x" style="font-weight:bold;font-size:16px;">', $html); // niet fout
+	$html = str_replace('### ', '<p class="hekje-3x" style="font-weight:bold;font-size:16px;">', $html); // niet fout
+	$html = str_replace('</p>\\\\\n', '</p><p>', $html); // ruimen
+	$html = str_replace('</p>\\\</p>', '</p><p>', $html); // ruimen
+	$html = str_replace('</p>\<p', '</p><p', $html); // ruimen
+	$html = str_replace('\n', '</p>', $html); // ruimen
+	$html = str_replace('![](', '<p style="display:none;">![](', $html); //verbergen
+	$html = str_replace('</p>##', '<p style="font-weight:bold;font-size:1.25em">', $html); //verbergen
+
+
 	return $html;
 }
 ?>
