@@ -43,14 +43,16 @@ function expandButton($count)
 
 function msgDescription($count, $date, $host, $title, $description, $link)
 {
-	return '<div class="msg-description\" id="msg-description' . $count . '>
-<div class="pubdate">' . $date . '</div>
-<span class="host">' . $host . '</span>
-<h2>' . $title . '</h2>
-' . html_entity_decode($description, ENT_QUOTES, 'UTF-8') . '<br/>
-<br/>
-<a href="' . $link . '" target="nieuwsartikel">&rarr; Verder op ' . $host . '</a>
-</div>';
+	$html = '';
+	$html .= '<div class="msg-description" id="msg-description' . $count . '">';
+	$html .= '<div class="pubdate">' . $date . '</div>';
+	$html .= '<span class="host">' . $host . '</span>';
+	$html .= '<h2>' . $title . '</h2>';
+	$html .= html_entity_decode($description, ENT_QUOTES, 'UTF-8');
+	$html .= '<br/><br/>';
+	$html .= '<a href="' . $link . '" target="nieuwsartikel">&rarr; Verder op ' . $host . '</a>';
+	$html .= '</div>';
+	return $html;
 }
 
 function msgLink($link, $date, $title, $host = '')
@@ -153,10 +155,10 @@ function getFeeds($groupby, $timeframe)
 					}
 				}
 			}
-			?>
-				</ul>
+?>
+			</ul>
 			</div>
-			<?php
+<?php
 		}
 	}
 	return $html;

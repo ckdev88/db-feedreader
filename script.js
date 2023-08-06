@@ -7,7 +7,6 @@ function expand(id) {
 		btn.innerHTML = btn.innerHTML == "+" ? "-" : "+";
 	};
 	btn.innerHTML = btn.innerHTML == "+" ? "-" : "+";
-	// btn.classList.toggle('active');
 }
 
 function changeVal() {
