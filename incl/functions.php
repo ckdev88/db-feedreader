@@ -56,7 +56,7 @@ function msgLink($link, $date, $title, $host = '')
 	return $html;
 }
 
-function getFeeds($groupby, $timeframe)
+function getFeeds($groupby = 'datum', $timeframe)
 {
 	$feeds = getFeedsArr();
 	$html = '';
@@ -81,9 +81,7 @@ function getFeeds($groupby, $timeframe)
 		$html .= '<ul>';
 
 		foreach ($entries as $entry) {
-			// echo pp($entry,'red','yellow');
 			if (strtotime($entry->pubDate) > $timeframe) {
-				// echo (substr($entry->title,0,20)).', '.strtotime($entry->pubDate).' '.$timeframe.'<br/>';
 				$pubDate = strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate));
 				$pubDate2 = strftime('%H:%M', strtotime($entry->pubDate));
 				$count++;
@@ -95,7 +93,6 @@ function getFeeds($groupby, $timeframe)
 				$html .= '</li>';
 			}
 		}
-
 		$html .= '</ul>';
 	} else {  // echo 'hier de ELSE: sort per blog';
 		$channels = array();
@@ -182,4 +179,7 @@ function getArticle($url = false)
 
 	return $html;
 }
+/*
+		"url": "https://github.com/impressivewebs/frontend-feeds#more-front-end-bloggers1",
+*/
 ?>
