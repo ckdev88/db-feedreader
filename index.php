@@ -29,7 +29,6 @@ if (isset($DATA['newsurl'])) {
 	<?php include('incl/functions.php'); ?>
 	<main>
 		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
-
 		<?php
 		echo getFilters();
 		echo getFeeds($getGroup, $getTimeframe);

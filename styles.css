@@ -12,7 +12,7 @@ a{cursor:pointer}
 select{margin-right:1rem}
 select option,select input{display:inline-block;}
 
-article{width:860px;float:right;margin-left:3rem;}
+article{width:860px;float:right;margin-left:3rem;background-color:black;padding-left:3rem;}
 
 p{margin-bottom:1em;}
 .blog{max-width:calc(1440px - 860px);}

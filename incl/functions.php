@@ -50,10 +50,13 @@ function getFeedsArr()
 	$retFeedsArr = array();
 	$feedsData = file_get_contents('incl/feeds.json');
 	$feedsObjects = json_decode($feedsData);
-
 	foreach ($feedsObjects as $key => $val) {
+		if (!isset($val->url)) continue;
 		if ($val->url != '') {
-			$retFeedsArr[] .= $val->url;
+			$retFeedsArr[$key]['name'] = $val->name;
+			$retFeedsArr[$key]['url'] = $val->url;
+			$retFeedsArr[$key]['rss_suffix'] = $val->rss_suffix;
+			$retFeedsArr[$key]['new_window'] = $val->new_window;
 		}
 	}
 	return $retFeedsArr;
@@ -78,14 +81,15 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 	return $html;
 }
 
-function msgLink($link, $date, $title, $host = '')
+function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 {
 	$html = '';
-	$html .= '
-		<a 
-			href="' . $link . '" 
-			target="_blank">
-		';
+
+	$html .= ($newWindow === 1 ?
+		'<a href="' . $link . '" target="_blank">' :
+		'<a href="?timeframe=' . (isset($_GET['timeframe']) ? $_GET['timeframe'] : '133337') . '&group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
+	);
+
 	$html .= '<div class="pubdate">' . $date . '</div>';
 	$html .= '<div>' . $title;
 	if ($host != '') {
@@ -107,7 +111,7 @@ function getFeeds($groupby = 'datum', $timeframe)
 	if ($groupby == 'datum') {
 		$entries = array();
 		foreach ($feeds as $feed) {
-			$xml = simplexml_load_file($feed, "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
+			$xml = simplexml_load_file($feed['url'] . $feed['rss_suffix'], "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
 			$entries = array_merge($entries, $xml->xpath('//item'));
 		}
 
@@ -128,7 +132,7 @@ function getFeeds($groupby = 'datum', $timeframe)
 
 				$html .= '<li class="msg">';
 				$html .= expandButton($count);
-				$html .= msgLink($entry->link, $pubDate2, $entry->title, str_replace('www.', '', parse_url($entry->link)['host']));
+				$html .= msgLink($entry->link, $pubDate2, $entry->title, str_replace('www.', '', parse_url($entry->link)['host']), 1); // TODO: newWindow not working in sort by date
 				$html .= msgDescription($count = $count, $date = $pubDate, $host = str_replace('www.', '', parse_url($entry->link)['host']), $title = $entry->title, $description = $entry->description, $link = $entry->link);
 				$html .= '</li>';
 			}
@@ -138,7 +142,7 @@ function getFeeds($groupby = 'datum', $timeframe)
 		$channels = array();
 		foreach ($feeds as $feed) {
 			if ($count < 100) {
-				$xml = simplexml_load_file($feed, "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
+				$xml = simplexml_load_file($feed['url'] . $feed['rss_suffix'], "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
 				$channels = array_merge($channels, $xml->xpath('//channel'));
 			}
 			$count += 1;
@@ -154,27 +158,33 @@ function getFeeds($groupby = 'datum', $timeframe)
 			$telChannelDetails = 0;
 			$blogTitle = $channelVal->title;
 
+			foreach ($feeds as $feed) {
+				if ($feed['url'] == $channelVal->link) $newWindow = $feed['new_window']; // returns 1 or 0
+			}
+
 			$opencount = 0;
 			foreach ((array) $channelVal as $channelDetailsKey => $channelDetailsVal) {
 				if (is_array($channelDetailsVal) == true && $channelDetailsKey == 'item') {
 					$msgArr = $channelDetailsVal;
 					foreach ((array) $msgArr as $msgKey => $msgVal) {
-						$pubDate = $msgVal->pubDate;
-						if (strtotime($pubDate) > $timeframe) {
-							if ($msgVal->title != '') {
-								if ($opencount == 0) {
-									$html .= '<div class="blog"><h2>' . $blogTitle . ' - ' . str_replace('www.', '', parse_url($msgVal->link)['host']) . '</h2><ul>';
-									$opencount = 1;
-								}
+						if (
+							!isset($msgVal->title) ||
+							$msgVal->title == '' ||
+							strtotime($msgVal->pubDate) < $timeframe
+						) continue;
 
-								$pubDate2 = strftime('%H:%M', strtotime($pubDate));
 
-								$html .= '<li class="msg">';
-								$html .= msgLink($msgVal->link, $pubDate2, $msgVal->title);
-								$html .= msgDescription($count = $idTeller, $date = $pubDate, $host = str_replace('www.', '', parse_url($msgVal->link)['host']) . ' - ' . $blogTitle, $title = $msgVal->title, $description = $msgVal->description, $link = $msgVal->link);
-								$html .= '</li>';
-							}
+						if ($opencount == 0) {
+							$html .= '<div class="blog"><h2>' . $blogTitle . ' - ' . str_replace('www.', '', parse_url($msgVal->link)['host']) . '</h2><ul>';
+							$opencount = 1;
 						}
+
+						$pubDate2 = strftime('%H:%M', strtotime($msgVal->pubDate));
+
+						$html .= '<li class="msg">';
+						$html .= msgLink($msgVal->link, $pubDate2, $msgVal->title, '', $newWindow);
+						$html .= msgDescription($count = $idTeller, $date = $msgVal->pubDate, $host = str_replace('www.', '', parse_url($msgVal->link)['host']) . ' - ' . $blogTitle, $title = $msgVal->title, $description = $msgVal->description, $link = $msgVal->link);
+						$html .= '</li>';
 						$idTeller++;
 					}
 				}
@@ -188,7 +198,7 @@ function getFeeds($groupby = 'datum', $timeframe)
 	return $html;
 }
 function getArticle($url = false)
-{
+{ // non-active, too primitive to use in most articles, TODO: remove or improve
 	if (!$url) return '';
 	$lump = file_get_contents($url);
 	$start_tag = '"markdown":"';
