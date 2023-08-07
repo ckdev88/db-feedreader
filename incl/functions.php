@@ -45,7 +45,12 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 
 function msgLink($link, $date, $title, $host = '')
 {
-	$html = '<a href="?timeframe=' . $_GET['timeframe'] . '&group=' . $_GET['group'] . '&newsurl=' . $link . '" target="nieuwsartikel" style="font-weight:normal">';
+	$html = '';
+	$html .= '
+		<a 
+			href="' . $link . '" 
+			target="_blank">
+		';
 	$html .= '<div class="pubdate">' . $date . '</div>';
 	$html .= '<div>' . $title;
 	if ($host != '') {
@@ -193,7 +198,7 @@ function getFilters()
 		$getGroup = 'blog';
 	$html = '';
 	$html .= '<nav>';
-	$html .= '<form action="?group=' . $_GET['group'] . '&timeframe=' . $_GET['timeframe'] . '">';
+	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&timeframe=' . (isset($_GET['timeframe']) ? $_GET['timeframe'] : '') . '">';
 	$html .= 'Sorteer:';
 	$html .= '<select name="group">';
 	$html .= '<option value="blog"' . (($getGroup == 'blog') ? ' selected' : '') . '>Blog</option>';
