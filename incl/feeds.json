@@ -9,20 +9,10 @@
 		"url": "https://medium.com/feed/@upekshadilshan000",
 		"refresh": 1337
 	},
-	{
-		"name": "geeksforgeeks",
-		"url": "https://www.geeksforgeeks.org/category/javascript/feed/",
-		"refresh": 1337
-	},
 	{ "name": "codeburst", "url": "https://codeburst.io/feed/", "refresh": 1337 },
 	{
 		"name": "medium zac",
 		"url": "https://medium.com/feed/@zac_heisey",
-		"refresh": 1337
-	},
-	{
-		"name": "geeksforgeeks picked",
-		"url": "https://www.geeksforgeeks.org/tag/picked/feed/",
 		"refresh": 1337
 	},
 	{ "name": "bitsofcode", "url": "https://bitsofco.de/rss", "refresh": 1337 },
@@ -32,18 +22,8 @@
 		"refresh": 1337
 	},
 	{
-		"name": "infoworld",
-		"url": "https://infoworld.com/index.rss",
-		"refresh": 1337
-	},
-	{
 		"name": "vuejs",
 		"url": "https://news.vuejs.org/feed.xml",
-		"refresh": 1337
-	},
-	{
-		"name": "smashing",
-		"url": "https://www.smashingmagazine.com/feed",
 		"refresh": 1337
 	},
 	{
@@ -54,6 +34,16 @@
 	{
 		"name": "chromium blog",
 		"url": "https://blog.chromium.org/feeds/posts/default",
+		"refresh": 1337
+	},
+	{
+		"name": "Dmitri Pavlutin",
+		"url": "https://dmitripavlutin.com/rss.xml",
+		"refresh": 1337
+	},
+	{
+		"name": "Dmitri Pavlutin",
+		"url": "https://front-end.social/@hdv.rss",
 		"refresh": 1337
 	}
 ]
