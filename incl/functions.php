@@ -1,5 +1,6 @@
 <?php
 global $DATA;
+include('./incl/GetFeeds.php');
 function pp($content, $theme = '', $bg = '', $fg = '')
 {
 	if ($theme == 'lime') {
@@ -84,8 +85,7 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 {
 	$html = '';
-
-	$html .= ($newWindow === 1 ?
+	$html .= ((int)$newWindow === 1 ?
 		'<a href="' . $link . '" target="_blank">' :
 		'<a href="?timeframe=' . (isset($_GET['timeframe']) ? $_GET['timeframe'] : '133337') . '&group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
 	);
@@ -96,103 +96,7 @@ function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 	return $html;
 }
 
-function getFeeds($groupby = 'datum', $timeframe)
-{
-	$feeds = getFeedsArr();
-	$html = '';
 
-	$nu = strtotime('now');
-	$timeframe = $nu - $timeframe;
-	$count = 0;
-	if ($groupby == 'datum') {
-		$entries = array();
-		foreach ($feeds as $feed) {
-			$xml = simplexml_load_file($feed['url'] . $feed['rss_suffix'], "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
-			$entries = array_merge($entries, $xml->xpath('//item'));
-		}
-
-		if (!empty($entries)) {
-			usort($entries, function ($feed1, $feed2) {
-				return strtotime($feed2->pubDate) - strtotime($feed1->pubDate);
-			});
-		} else {
-			$html .= 'no entries';
-		}
-		$html .= '<ul>';
-
-		foreach ($entries as $entry) {
-			if (strtotime($entry->pubDate) > $timeframe) {
-				$pubDate = strftime('%m/%d/%Y %I:%M %p', strtotime($entry->pubDate));
-				$pubDate2 = strftime('%H:%M', strtotime($entry->pubDate));
-				$count++;
-
-				$html .= '<li class="msg">';
-				$html .= expandButton($count);
-				$html .= msgLink($entry->link, $pubDate2, $entry->title, str_replace('www.', '', parse_url($entry->link)['host']), 1); // TODO: newWindow not working in sort by date
-				$html .= msgDescription($count = $count, $date = $pubDate, $host = str_replace('www.', '', parse_url($entry->link)['host']), $title = $entry->title, $description = $entry->description, $link = $entry->link);
-				$html .= '</li>';
-			}
-		}
-		$html .= '</ul>';
-	} else {  // echo 'hier de ELSE: sort per blog';
-		$channels = array();
-		foreach ($feeds as $feed) {
-			if ($count < 100) {
-				$xml = simplexml_load_file($feed['url'] . $feed['rss_suffix'], "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
-				$channels = array_merge($channels, $xml->xpath('//channel'));
-			}
-			$count += 1;
-		}
-		usort($channels, function ($feed1, $feed2) {
-			return strtotime($feed2->pubDate) - strtotime($feed1->pubDate);
-		});
-
-		$telChannels = 0;
-		$idTeller = 0;
-		foreach ($channels as $channelKey => $channelVal) {
-			$telChannels++;
-			$telChannelDetails = 0;
-			$blogTitle = $channelVal->title;
-
-			foreach ($feeds as $feed) {
-				if ($feed['url'] == $channelVal->link) $newWindow = $feed['new_window']; // returns 1 or 0
-			}
-
-			$opencount = 0;
-			foreach ((array) $channelVal as $channelDetailsKey => $channelDetailsVal) {
-				if (is_array($channelDetailsVal) == true && $channelDetailsKey == 'item') {
-					$msgArr = $channelDetailsVal;
-					foreach ((array) $msgArr as $msgKey => $msgVal) {
-						if (
-							!isset($msgVal->title) ||
-							$msgVal->title == '' ||
-							strtotime($msgVal->pubDate) < $timeframe
-						) continue;
-
-
-						if ($opencount == 0) {
-							$html .= '<div class="blog"><h2>' . $blogTitle . ' - ' . str_replace('www.', '', parse_url($msgVal->link)['host']) . '</h2><ul>';
-							$opencount = 1;
-						}
-
-						$pubDate2 = strftime('%H:%M', strtotime($msgVal->pubDate));
-
-						$html .= '<li class="msg">';
-						$html .= msgLink($msgVal->link, $pubDate2, $msgVal->title, '', $newWindow);
-						$html .= msgDescription($count = $idTeller, $date = $msgVal->pubDate, $host = str_replace('www.', '', parse_url($msgVal->link)['host']) . ' - ' . $blogTitle, $title = $msgVal->title, $description = $msgVal->description, $link = $msgVal->link);
-						$html .= '</li>';
-						$idTeller++;
-					}
-				}
-			}
-?>
-			</ul>
-			</div>
-<?php
-		}
-	}
-	return $html;
-}
 function getArticle($url = false)
 { // non-active, too primitive to use in most articles, TODO: remove or improve
 	if (!$url) return '';
@@ -264,4 +168,3 @@ function getFilters()
 	$html .= '</nav>';
 	return $html;
 }
-?>
