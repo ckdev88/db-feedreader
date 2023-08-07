@@ -1,7 +1,42 @@
 <?php
 global $DATA;
-function pp($content, $bg = 'lightgrey', $fg = 'black')
+function pp($content, $theme = '', $bg = '', $fg = '')
 {
+	if ($theme == 'lime') {
+		$bg = 'lime';
+		$fg = 'black';
+	} elseif ($theme == 'lime2') {
+		$bg = 'black';
+		$fg = 'lime';
+	} elseif ($theme == 'yellow') {
+		$bg = 'yellow';
+		$fg = 'black';
+	} elseif ($theme == 'yellow2') {
+		$bg = 'black';
+		$fg = 'yellow';
+	} elseif ($theme == 'blue') {
+		$bg = 'blue';
+		$fg = 'white';
+	} elseif ($theme == 'blue2') {
+		$bg = 'white';
+		$fg = 'blue';
+	} elseif ($theme == 'red') {
+		$bg = 'red';
+		$fg = 'white';
+	} elseif ($theme == 'red2') {
+		$bg = 'white';
+		$fg = 'red';
+	} elseif ($theme == 'green') {
+		$bg = 'green';
+		$fg = 'white';
+	} elseif ($theme == 'green2') {
+		$bg = 'white';
+		$fg = 'green';
+	} else {
+		$bg = 'lightgrey';
+		$fg = 'black';
+	}
+
 	ob_start();
 	echo '<pre style="background-color:' . $bg . ';color:' . $fg . '"><br/>';
 	print_r($content);
