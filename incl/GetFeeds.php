@@ -4,10 +4,9 @@ function getFeeds($groupby = 'datum', $interval)
 	$feeds = getFeedsArr();
 	$html = '';
 	$nu = strtotime('now');
-	$interval = $nu - $interval;
 	$count = 0;
 
-	// platslaan en gewoon een goede array
+	// platslaan en gewoon een goede array opbouwen
 	$newArray = array();
 	$rnCount = 2000;
 	foreach ($feeds as $feedKey => $feedVal) {
@@ -23,6 +22,7 @@ function getFeeds($groupby = 'datum', $interval)
 				$newArray[$feedKey][$rnCount]['link'] = (string)$xmll->id;
 				$newArray[$feedKey][$rnCount]['pubDate'] = (string)$xmll->updated;
 				$newArray[$feedKey][$rnCount]['name'] = $feedVal['name'];
+				$newArray[$feedKey][$rnCount]['interval'] = $feedVal['interval'];
 				$newArray[$feedKey][$rnCount]['new_window'] = $feedVal['new_window'];
 				$rnCount++;
 			}
@@ -38,6 +38,7 @@ function getFeeds($groupby = 'datum', $interval)
 				$newArray[$feedKey][$itemKey]['link'] = (string)$itemVal->link;
 				$newArray[$feedKey][$itemKey]['pubDate'] = (string)$itemVal->pubDate;
 				$newArray[$feedKey][$itemKey]['name'] = $feedVal['name'];
+				$newArray[$feedKey][$itemKey]['interval'] = $feedVal['interval'];
 				$newArray[$feedKey][$itemKey]['new_window'] = $feedVal['new_window'];
 			}
 		}
@@ -56,10 +57,11 @@ function getFeeds($groupby = 'datum', $interval)
 	$html .= '<ul>';
 	$tmpBlogname = '';
 	foreach ($entries as $entry) {
-		if (strtotime($entry['pubDate']) < $interval) continue;
+		if (!isset($entry['interval']) || !isset($entry['pubDate'])) continue;
+		elseif ((strtotime($entry['pubDate']) < ($nu - $entry['interval']))) continue;
 
-		$pubDate = strftime('%m/%d/%Y %I:%M %p', strtotime($entry['pubDate']));
-		$pubDate2 = strftime('%H:%M', strtotime($entry['pubDate']));
+		$pubDate = $entry['pubDate'];
+		$pubDate2 = $pubDate;
 		$count++;
 
 		if ($groupby == 'blog') {
@@ -70,11 +72,10 @@ function getFeeds($groupby = 'datum', $interval)
 		}
 
 		$html .= '<li class="msg">';
-		// $html .= expandButton($count);
 		$html .= msgLink(
 			(string)$entry['link'],
-			$pubDate2,
-			(string)$entry['title'],
+			$pubDate,
+			(string)strip_tags($entry['title']),
 			(isset($entry['name']) && $groupby == 'datum' ? $entry['name'] : ''),
 			$entry['new_window']
 		);
@@ -82,7 +83,7 @@ function getFeeds($groupby = 'datum', $interval)
 			$count,
 			$pubDate,
 			(isset(parse_url($entry['link'])['host']) ? str_replace('www.', '', parse_url($entry['link'])['host']) : ''),
-			$entry['title'],
+			strip_tags($entry['title']),
 			$entry['description'],
 			$entry['link']
 		);

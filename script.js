@@ -8,9 +8,3 @@ function expand(id) {
 	};
 	btn.innerHTML = btn.innerHTML == "+" ? "-" : "+";
 }
-
-function changeVal() {
-	var select = document.getElementById("selectInterval");
-	var value = select.value;
-	document.getElementById("refreshInterval").setAttribute("value", value);
-}

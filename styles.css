@@ -13,10 +13,10 @@ select{margin-right:1rem}
 select option,select input{display:inline-block;}
 
 article{width:560px;float:right;margin-left:2rem;background-color:black;padding-left:3rem;border-left:2px dashed #eee;}
-
+th,td{text-align:left;}
 p{margin-bottom:1em;}
-.blog{max-width:calc(1440px - 860px);}
 
+.blog{max-width:calc(1440px - 860px);}
 .msg{position:relative;}
 .msg>h3,.msg>a{border-bottom:1px dotted #333;padding:.4rem .5rem;text-decoration:none;transition:background-color .2s ease-in-out;display:block;}
 .msg>h3{font-weight:bold;color:lime;}

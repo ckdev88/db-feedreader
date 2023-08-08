@@ -62,6 +62,7 @@ function getFeedsArr()
 			$retFeedsArr[$key]['name'] = $val->name;
 			$retFeedsArr[$key]['url'] = $val->url;
 			$retFeedsArr[$key]['rss_suffix'] = $val->rss_suffix;
+			$retFeedsArr[$key]['interval'] = $val->interval;
 			$retFeedsArr[$key]['new_window'] = $val->new_window;
 		}
 	}
@@ -92,7 +93,7 @@ function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 	$html = '';
 	$html .= (boolval($newWindow) === true ?
 		'<a href="' . $link . '" target="_blank">' :
-		'<a href="?interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '133337') . '&group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
+		'<a href="?group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
 	);
 
 	$html .= '<div class="pubdate">' . $date . '</div>';
@@ -154,21 +155,7 @@ function getFilters()
 	$html .= '<option value="blog"' . (($getGroup == 'blog') ? ' selected' : '') . '>Blog</option>';
 	$html .= '<option value="datum"' . (($getGroup == 'datum') ? ' selected' : '') . '>Datum</option>';
 	$html .= '</select>';
-	$html .= 'Tijd:';
-	$html .= '<select name="interval" id="selectInterval" onChange="javascript:changeVal()">';
-	$html .= '<option value="300" ' . (($getInterval == 300) ? ' selected' : '') . '>5 minuten</option>';
-	$html .= '<option value="600" ' . (($getInterval == 600) ? ' selected' : '') . '>10 minuten</option>';
-	$html .= '<option value="900" ' . (($getInterval == 900) ? ' selected' : '') . '>15 minuten</option>';
-	$html .= '<option value="1800" ' . (($getInterval == 1800) ? ' selected' : '') . '>30 minuten</option>';
-	$html .= '<option value="3600" ' . (($getInterval == 3600) ? ' selected' : '') . '>1 uur</option>';
-	$html .= '<option value="7200" ' . (($getInterval == 7200) ? ' selected' : '') . '>2 uur</option>';
-	$html .= '<option value="36000" ' . (($getInterval == 36000 || '') ? ' selected' : '') . '>10 uur</option>';
-	$html .= '<option value="86400" ' . (($getInterval == 86400) ? ' selected' : '') . '>1 dag</option>';
-	$html .= '<option value="432000" ' . (($getInterval == 432000) ? ' selected' : '') . '>5 dagen</option>';
-	$html .= '<option value="864000" ' . (($getInterval == 864000) ? ' selected' : '') . '>10 dagen</option>';
-	$html .= '<option value="1728000" ' . (($getInterval == 1728000) ? ' selected' : '') . '>20 dagen</option>';
-	$html .= '</select>';
-	$html .= 'Ververs: <input type="checkbox" name="refresh" id="refreshInterval" value="' . $getInterval . '" ' . ((isset($_GET['refresh']) > 0) ? ' checked' : '') . '/>';
+
 	$html .= '<input type="submit" value="Filter"></input>';
 
 	$html .= '</form>';
