@@ -1,5 +1,5 @@
 <?php
-function getFeeds($groupby = 'datum', $interval)
+function getFeeds($groupby = 'datum')
 {
 	$feeds = getFeedsArr();
 	$html = '';

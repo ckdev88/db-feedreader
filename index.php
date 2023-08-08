@@ -28,7 +28,7 @@ if (isset($DATA['newsurl'])) {
 		<?php require('./components/CrudFeeds.php'); ?>
 		<?php
 		echo getFilters();
-		echo getFeeds($getGroup, $getInterval);
+		echo getFeeds($getGroup);
 		?>
 	</main>
 </body>

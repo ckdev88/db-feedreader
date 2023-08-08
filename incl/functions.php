@@ -139,10 +139,6 @@ function getArticle($url = false)
 function getFilters()
 {
 	global $DATA;
-	if (isset($_GET['interval'])) {
-		$getInterval = $_GET['interval'];
-	} else
-		$getInterval = 36000;
 	if (isset($_GET['group'])) {
 		$getGroup = $_GET['group'];
 	} else
