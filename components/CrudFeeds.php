@@ -1,8 +1,8 @@
 <div class="crud-feeds">
 	<div>
 		<?php
-		include('incl/AddFeeds.php');
-		if (isset($_POST['addfeed'])) echo addFeeds();
+		include('incl/AddFeed.php');
+		if (isset($_POST['addfeed'])) echo addFeed();
 		?>
 		<h2>Create:</h2>
 		<form method="post">

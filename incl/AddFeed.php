@@ -1,7 +1,7 @@
 <?php
 require('supabase.php');
 
-function addFeeds()
+function addFeed()
 {
 	global $service;
 	if (isset($_POST['addfeed'])) {
