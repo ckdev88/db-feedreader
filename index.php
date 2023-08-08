@@ -1,6 +1,5 @@
 <?php
 require('supabase.php');
-include('incl/AddFeeds.php');
 global $DATA;
 $DATA = array_merge($_GET, $_POST);
 if (isset($DATA['group'])) {
@@ -32,10 +31,10 @@ if (isset($DATA['newsurl'])) {
 	<?php include('incl/functions.php'); ?>
 	<main>
 		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
+		<?php require('./components/CrudFeeds.php'); ?>
 		<?php
 		echo getFilters();
 		echo getFeeds($getGroup, $getInterval);
-		echo addFeeds();
 		?>
 	</main>
 </body>
