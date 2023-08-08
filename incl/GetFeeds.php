@@ -70,7 +70,7 @@ function getFeeds($groupby = 'datum', $interval)
 		}
 
 		$html .= '<li class="msg">';
-		$html .= expandButton($count);
+		// $html .= expandButton($count);
 		$html .= msgLink(
 			(string)$entry['link'],
 			$pubDate2,
