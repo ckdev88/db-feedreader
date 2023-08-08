@@ -27,6 +27,13 @@
 		</form>
 	</div>
 	<div>
+		<h2>Read/List:</h2>
+		<?php
+		include('incl/ListFeeds.php');
+		echo ListFeeds();
+		?>
+	</div>
+	<div>
 		<h2>Update:</h2>
 		<form>
 
