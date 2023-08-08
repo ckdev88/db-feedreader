@@ -87,7 +87,7 @@ function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 	$html = '';
 	$html .= ((int)$newWindow === 1 ?
 		'<a href="' . $link . '" target="_blank">' :
-		'<a href="?timeframe=' . (isset($_GET['timeframe']) ? $_GET['timeframe'] : '133337') . '&group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
+		'<a href="?interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '133337') . '&group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
 	);
 
 	$html .= '<div class="pubdate">' . $date . '</div>';
@@ -133,38 +133,41 @@ function getArticle($url = false)
 function getFilters()
 {
 	global $DATA;
-	if (isset($_GET['timeframe'])) {
-		$getTimeframe = $_GET['timeframe'];
+	if (isset($_GET['interval'])) {
+		$getInterval = $_GET['interval'];
 	} else
-		$getTimeframe = 36000;
+		$getInterval = 36000;
 	if (isset($_GET['group'])) {
 		$getGroup = $_GET['group'];
 	} else
 		$getGroup = 'blog';
 	$html = '';
 	$html .= '<nav>';
-	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&timeframe=' . (isset($_GET['timeframe']) ? $_GET['timeframe'] : '') . '">';
+	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '') . '">';
 	$html .= 'Sorteer:';
 	$html .= '<select name="group">';
 	$html .= '<option value="blog"' . (($getGroup == 'blog') ? ' selected' : '') . '>Blog</option>';
 	$html .= '<option value="datum"' . (($getGroup == 'datum') ? ' selected' : '') . '>Datum</option>';
 	$html .= '</select>';
 	$html .= 'Tijd:';
-	$html .= '<select name="timeframe" id="selectTimeFrame" onChange="javascript:changeVal()">';
-	$html .= '<option value="300" ' . (($getTimeframe == 300) ? ' selected' : '') . '>5 minuten</option>';
-	$html .= '<option value="600" ' . (($getTimeframe == 600) ? ' selected' : '') . '>10 minuten</option>';
-	$html .= '<option value="900" ' . (($getTimeframe == 900) ? ' selected' : '') . '>15 minuten</option>';
-	$html .= '<option value="1800" ' . (($getTimeframe == 1800) ? ' selected' : '') . '>30 minuten</option>';
-	$html .= '<option value="3600" ' . (($getTimeframe == 3600) ? ' selected' : '') . '>1 uur</option>';
-	$html .= '<option value="7200" ' . (($getTimeframe == 7200) ? ' selected' : '') . '>2 uur</option>';
-	$html .= '<option value="36000" ' . (($getTimeframe == 36000 || '') ? ' selected' : '') . '>10 uur</option>';
-	$html .= '<option value="86400" ' . (($getTimeframe == 86400) ? ' selected' : '') . '>1 dag</option>';
-	$html .= '<option value="432000" ' . (($getTimeframe == 432000) ? ' selected' : '') . '>5 dagen</option>';
+	$html .= '<select name="interval" id="selectInterval" onChange="javascript:changeVal()">';
+	$html .= '<option value="300" ' . (($getInterval == 300) ? ' selected' : '') . '>5 minuten</option>';
+	$html .= '<option value="600" ' . (($getInterval == 600) ? ' selected' : '') . '>10 minuten</option>';
+	$html .= '<option value="900" ' . (($getInterval == 900) ? ' selected' : '') . '>15 minuten</option>';
+	$html .= '<option value="1800" ' . (($getInterval == 1800) ? ' selected' : '') . '>30 minuten</option>';
+	$html .= '<option value="3600" ' . (($getInterval == 3600) ? ' selected' : '') . '>1 uur</option>';
+	$html .= '<option value="7200" ' . (($getInterval == 7200) ? ' selected' : '') . '>2 uur</option>';
+	$html .= '<option value="36000" ' . (($getInterval == 36000 || '') ? ' selected' : '') . '>10 uur</option>';
+	$html .= '<option value="86400" ' . (($getInterval == 86400) ? ' selected' : '') . '>1 dag</option>';
+	$html .= '<option value="432000" ' . (($getInterval == 432000) ? ' selected' : '') . '>5 dagen</option>';
+	$html .= '<option value="864000" ' . (($getInterval == 864000) ? ' selected' : '') . '>10 dagen</option>';
+	$html .= '<option value="1728000" ' . (($getInterval == 1728000) ? ' selected' : '') . '>20 dagen</option>';
 	$html .= '</select>';
-	$html .= 'Ververs: <input type="checkbox" name="refresh" id="refreshTimeFrame" value="' . $getTimeframe . '" ' . ((isset($_GET['refresh']) > 0) ? ' checked' : '') . '/>';
+	$html .= 'Ververs: <input type="checkbox" name="refresh" id="refreshInterval" value="' . $getInterval . '" ' . ((isset($_GET['refresh']) > 0) ? ' checked' : '') . '/>';
 	$html .= '<input type="submit" value="Filter"></input>';
 
 	$html .= '</form>';
 	$html .= '</nav>';
 	return $html;
 }
+//		https://github.com/impressivewebs/frontend-feeds#top-front-end-bloggers

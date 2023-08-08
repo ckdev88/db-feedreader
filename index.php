@@ -5,10 +5,10 @@ if (isset($DATA['group'])) {
 	$getGroup = $DATA['group'];
 } else
 	$getGroup = 'blog';
-if (isset($DATA['timeframe'])) {
-	$getTimeframe = $DATA['timeframe'];
+if (isset($DATA['interval'])) {
+	$getInterval = $DATA['interval'];
 } else
-	$getTimeframe = 36000;
+	$getInterval = 36000;
 if (isset($DATA['newsurl'])) {
 	$getNewsUrl = urldecode($DATA['newsurl']);
 } else {
@@ -31,7 +31,7 @@ if (isset($DATA['newsurl'])) {
 		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
 		<?php
 		echo getFilters();
-		echo getFeeds($getGroup, $getTimeframe);
+		echo getFeeds($getGroup, $getInterval);
 		?>
 	</main>
 </body>

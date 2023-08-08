@@ -10,7 +10,7 @@ function expand(id) {
 }
 
 function changeVal() {
-	var select = document.getElementById("selectTimeFrame");
+	var select = document.getElementById("selectInterval");
 	var value = select.value;
-	document.getElementById("refreshTimeFrame").setAttribute("value", value);
+	document.getElementById("refreshInterval").setAttribute("value", value);
 }
