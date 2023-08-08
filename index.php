@@ -1,4 +1,6 @@
 <?php
+require('supabase.php');
+include('incl/AddFeeds.php');
 global $DATA;
 $DATA = array_merge($_GET, $_POST);
 if (isset($DATA['group'])) {
@@ -8,12 +10,13 @@ if (isset($DATA['group'])) {
 if (isset($DATA['interval'])) {
 	$getInterval = $DATA['interval'];
 } else
-	$getInterval = 36000;
+	$getInterval = 864000;
 if (isset($DATA['newsurl'])) {
 	$getNewsUrl = urldecode($DATA['newsurl']);
 } else {
 	$getNewsUrl = false;
 }
+
 ?>
 <html>
 
@@ -32,6 +35,7 @@ if (isset($DATA['newsurl'])) {
 		<?php
 		echo getFilters();
 		echo getFeeds($getGroup, $getInterval);
+		echo addFeeds();
 		?>
 	</main>
 </body>

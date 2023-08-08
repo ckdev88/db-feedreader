@@ -85,7 +85,7 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 {
 	$html = '';
-	$html .= ((int)$newWindow === 1 ?
+	$html .= (boolval($newWindow) === true ?
 		'<a href="' . $link . '" target="_blank">' :
 		'<a href="?interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '133337') . '&group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">'
 	);

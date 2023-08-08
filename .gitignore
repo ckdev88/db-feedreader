@@ -1,2 +1,4 @@
 node_modules/
 tmp.txt
+vendor/
+supabase.php
