@@ -1,6 +1,8 @@
 <?php
+global $_POST, $DATA;
 require('supabase.php');
-global $DATA;
+include('incl/functions.php');
+include('incl/supabaseFunctions.php');
 $DATA = array_merge($_GET, $_POST);
 if (isset($DATA['group'])) {
 	$getGroup = $DATA['group'];
@@ -28,7 +30,6 @@ if (isset($DATA['newsurl'])) {
 </head>
 
 <body>
-	<?php include('incl/functions.php'); ?>
 	<main>
 		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
 		<?php require('./components/CrudFeeds.php'); ?>
