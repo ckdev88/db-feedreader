@@ -48,10 +48,15 @@ function pp($content, $theme = '', $bg = '', $fg = '')
 
 function getFeedsArr()
 {
+
 	$retFeedsArr = array();
-	$feedsData = file_get_contents('incl/feeds.json');
-	$feedsObjects = json_decode($feedsData);
+
+	// $feedsData = file_get_contents('incl/feeds.json'); // use this if preferring local feeds json file instead of database 1/2
+	// $feedsObjects = json_decode($feedsData); // use this if preferring local feeds json file instead of database 2/2
+	$feedsObjects = ListFeeds(); // use this if preferring database instead of local feeds json file 1/1
+
 	foreach ($feedsObjects as $key => $val) {
+		if (isset($val->hidden) && $val->hidden === true) continue;
 		if (!isset($val->url)) continue;
 		if ($val->url != '') {
 			$retFeedsArr[$key]['name'] = $val->name;
