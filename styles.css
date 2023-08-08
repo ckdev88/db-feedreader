@@ -1,5 +1,5 @@
 html{background:#000;color:#fff;}
-html,body{margin:0;font-size:14px;padding:0;}
+html,body{margin:0;font-size:16px;padding:0;}
 ul,li{margin:0;padding:0;list-style:none;max-width:40rem;}
 h2{font-size:1rem;font-weight:bold;padding:.5rem;background:#222;color:#fff;border:0;border:1px solid black}
 h2 div,h2 br{display:none;}
@@ -12,17 +12,18 @@ a{cursor:pointer}
 select{margin-right:1rem}
 select option,select input{display:inline-block;}
 
-article{width:860px;float:right;margin-left:3rem;background-color:black;padding-left:3rem;}
+article{width:560px;float:right;margin-left:2rem;background-color:black;padding-left:3rem;border-left:2px dashed #eee;}
 
 p{margin-bottom:1em;}
 .blog{max-width:calc(1440px - 860px);}
 
 .msg{position:relative;}
-.msg>a{border-bottom:1px dotted #333;padding:.4rem .5rem;text-decoration:none;transition:background-color .2s ease-in-out;display:block;}
+.msg>h3,.msg>a{border-bottom:1px dotted #333;padding:.4rem .5rem;text-decoration:none;transition:background-color .2s ease-in-out;display:block;}
+.msg>h3{font-weight:bold;color:lime;}
 .msg>a:hover{background:linear-gradient(rgba(255,255,255,.20) 0%, rgba(255,255,255,.12) 5%, rgba(255,255,255,.1)  40%,rgba(255,255,255,.1)  70%,rgba(255,255,255,.15) 100%)}
 .msg button{position:absolute;right:-1rem;padding:0;border:0;background:#2f2f2f;font-weight:bold;cursor:pointer;display:block;margin:.4rem 0 0 .4rem;border:1px solid #555;height:1rem;width:1rem;line-height:.9rem;color:#fff;}
 .msg button.active{background:#f00;}
-.msg-description{display:none;position:fixed;left:0;max-width:40rem;height:100vh;top:0;background:rgba(0,0,0,.95);padding:2rem 1rem;z-index:2}
+.msg-description{display:none;position:fixed;left:0;max-width:40rem;height:100vh;top:0;background:rgba(0,0,0,.95);padding:2rem 1rem;z-index:2;overflow-y:auto;}
 .msg-description img{display:none;}
 .msg-description p{margin:0;padding:0;}
 .host{font-weight:normal;opacity:.5}
