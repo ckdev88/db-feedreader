@@ -14,12 +14,17 @@ if (isset($DATA['newsurl'])) {
 	$getNewsUrl = false;
 }
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<title>RSS Feeds</title>
-	<link rel="stylesheet" type="text/css" href="./styles.css" />
-	<script src="./script.js"></script>
+	<title>CK Feed Reader</title>
+	<style type="text/css">
+		<?php include('./styles.css'); ?>
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Feed reader, input the feed and get links to the articles posted there, filtered by date per feed." />
+	<meta name="author" content="CK Dev." />
 </head>
 
 <body>
@@ -38,6 +43,7 @@ if (isset($DATA['newsurl'])) {
 			<div class="container">© Cors, Frontend Developer 2023</div>
 		</footer>
 	</div>
+	<script src="./script.js"></script>
 </body>
 
 </html>

@@ -80,6 +80,7 @@ function getFeeds($groupby = 'datum')
 			(isset($entry['name']) && $groupby == 'datum' ? $entry['name'] : ''),
 			$entry['new_window']
 		);
+		/*
 		$html .= msgDescription(
 			$count,
 			$pubDate,
@@ -88,6 +89,7 @@ function getFeeds($groupby = 'datum')
 			$entry['description'],
 			$entry['link']
 		);
+		*/
 		$html .= '</li>';
 	}
 	$html .= '</ul>';

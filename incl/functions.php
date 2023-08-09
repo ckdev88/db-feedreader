@@ -98,7 +98,7 @@ function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 	);
 
 	$html .= '<div class="pubdate">' . $date . '</div>';
-	$html .= '<div>' . $title . ($host != '' ? '<span class="host"> - ' . $host . '</span>' : '') . '</div>';
+	$html .= $title . ($host != '' ? '<span class="host"> - ' . $host . '</span>' : '');
 	$html .= '</a>';
 	return $html;
 }

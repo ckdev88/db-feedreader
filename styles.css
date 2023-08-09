@@ -39,3 +39,5 @@ p{margin-bottom:1em;}
 .cud h2{margin:0;border:0;background:none;}
 footer{border-top:1px dashed #eee;padding-top:1rem;margin-top:1rem;}
 .container{max-width:100vw;}
+input [type=radio],input[type=checkbox]{cursor:pointer}
+.sr-only{overflow:hidden;width:0px;display:block;height:0}
