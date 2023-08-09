@@ -3,25 +3,24 @@ if (isset($_POST['addfeed'])) echo addFeed();
 ?>
 <?= expandButton('cud'); ?>
 <div class="cud" id="cud">
-	<h2>CUD</h2>
 	<form method="post">
 		<table cellpadding=0 cellspacing=0>
 			<tr>
-				<td><input type="text" name="addfeed-name" placeholder="Name" size="15"></td>
+				<td><input type="text" name="addfeed-name" placeholder="Name..." size="12"></td>
 				<td>
-					<input type="text" name="addfeed-url" placeholder="URL" size="25">
+					<input type="text" name="addfeed-url" placeholder="URL..." size="25">
 				</td>
 				<td>
-					<input type="text" name="addfeed-rss-suffix" placeholder="RSS Suffix" size="8">
+					<input type="text" name="addfeed-rss-suffix" placeholder="RSS Suffix..." size="8">
 				</td>
 				<td>
-					<select name="addfeed-interval" style="width:85px;">
+					<select name="addfeed-interval" style="width:70px;">
 						<option value="86400">1 dag</option>
-						<option value="259200">3 dagen</option>
-						<option value="432000">5 dagen</option>
-						<option value="864000">10 dagen</option>
-						<option value="1728000">20 dagen</option>
-						<option value="3456000">40 dagen</option>
+						<option value="259200">3 dgn</option>
+						<option value="432000">5 dgn</option>
+						<option value="864000">10 dgn</option>
+						<option value="1728000">20 dgn</option>
+						<option value="3456000">40 dgn</option>
 					</select>
 				</td>
 				<td>nw:<input type="checkbox" name="addfeed-new-window" value="true" /></td>
@@ -53,17 +52,17 @@ if (isset($_POST['addfeed'])) echo addFeed();
 					if ($feed->url == '') continue;
 					if ($feed->hidden === true) continue; ?>
 					<tr>
-						<td><input type="text" name="updatefield[<?= $feed->id ?>][]name" value="<?= $feed->name ?>" size="15" /></td>
+						<td><input type="text" name="updatefield[<?= $feed->id ?>][]name" value="<?= $feed->name ?>" size="12" /></td>
 						<td><input type="text" name="updatefield[<?= $feed->id ?>][]url" value="<?= $feed->url ?>" size="25" /></td>
 						<td><input type="text" name="updatefield[<?= $feed->id ?>][]suffix" value="<?= $feed->rss_suffix ?>" size="8" /></td>
 						<td>
-							<select name="updatefield[<?= $feed->id ?>][]interval" style="width:85px;">
+							<select name="updatefield[<?= $feed->id ?>][]interval" style="width:70px;">
 								<option value="86400" <?= ($feed->interval === 86400 || '') ? ' selected' : ''; ?>>1 dag</option>
-								<option value="259200" <?= ($feed->interval === 259200 || '') ? ' selected' : ''; ?>>3 dagen</option>
-								<option value="432000" <?= ($feed->interval == 432000) ? ' selected' : ''; ?>>5 dagen</option>
-								<option value="864000" <?= ($feed->interval == 864000) ? ' selected' : ''; ?>>10 dagen</option>
-								<option value="1728000" <?= ($feed->interval == 1728000) ? ' selected' : ''; ?>>20 dagen</option>
-								<option value="3456000" <?= ($feed->interval == 3456000) ? ' selected' : ''; ?>>40 dagen</option>
+								<option value="259200" <?= ($feed->interval === 259200 || '') ? ' selected' : ''; ?>>3 dgn</option>
+								<option value="432000" <?= ($feed->interval == 432000) ? ' selected' : ''; ?>>5 dgn</option>
+								<option value="864000" <?= ($feed->interval == 864000) ? ' selected' : ''; ?>>10 dgn</option>
+								<option value="1728000" <?= ($feed->interval == 1728000) ? ' selected' : ''; ?>>20 dgn</option>
+								<option value="3456000" <?= ($feed->interval == 3456000) ? ' selected' : ''; ?>>40 dgn</option>
 							</select>
 						</td>
 						<td><input type="checkbox" name="updatefield[<?= $feed->id ?>][]new_window" <?= ($feed->new_window ? ' checked' : '') ?> /></td>

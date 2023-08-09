@@ -118,21 +118,23 @@ function getArticle($url = false)
 			$html = substr($lump, $startpos, $endpos - $startpos);
 		}
 	}
-	// replaces, approved for hackernoon
-	$html = str_replace('\n\n', '</p>', $html); // goed
-	$html = str_replace('\\\\\n\u003e', '<p style="border-left:.5em solid yellow;padding-left:3em;font-size:1.25em;font-style:italic;">',  $html); // quote: goed
-	$html = str_replace('\\\n### ', '<p class="hekje-3x" style="font-weight:bold;font-size:16px;">', $html); // niet fout
-	$html = str_replace('### ', '<p class="hekje-3x" style="font-weight:bold;font-size:16px;">', $html); // niet fout
-	$html = str_replace('</p>\\\\\n', '</p><p>', $html); // cleanup
-	$html = str_replace('</p>\\\</p>', '</p><p>', $html); // cleanup
-	$html = str_replace('</p>\<p', '</p><p', $html); // cleanup
-	$html = str_replace('\n', '</p>', $html); // cleanup
-	$html = str_replace('![](', '<p style="display:none;">![](', $html); // hide
-	$html = str_replace('</p>##', '<p style="font-weight:bold;font-size:1.25em">', $html); // hide
-	$html = str_replace('\\\</p>', '', $html); // hide
-	$html = str_replace('</p>#<p', '</p><p', $html); // hide
-	$html = str_replace('</p>#<p', '</p><p', $html); // hide
-	$html = str_replace('</p><p>[   <p', '</p><p', $html); // hide
+	if (isset($html)) {
+		// replaces, approved for hackernoon
+		$html = str_replace('\n\n', '</p>', $html); // goed
+		$html = str_replace('\\\\\n\u003e', '<p style="border-left:.5em solid yellow;padding-left:3em;font-size:1.25em;font-style:italic;">',  $html); // quote: goed
+		$html = str_replace('\\\n### ', '<p class="hekje-3x" style="font-weight:bold;font-size:16px;">', $html); // niet fout
+		$html = str_replace('### ', '<p class="hekje-3x" style="font-weight:bold;font-size:16px;">', $html); // niet fout
+		$html = str_replace('</p>\\\\\n', '</p><p>', $html); // cleanup
+		$html = str_replace('</p>\\\</p>', '</p><p>', $html); // cleanup
+		$html = str_replace('</p>\<p', '</p><p', $html); // cleanup
+		$html = str_replace('\n', '</p>', $html); // cleanup
+		$html = str_replace('![](', '<p style="display:none;">![](', $html); // hide
+		$html = str_replace('</p>##', '<p style="font-weight:bold;font-size:1.25em">', $html); // hide
+		$html = str_replace('\\\</p>', '', $html); // hide
+		$html = str_replace('</p>#<p', '</p><p', $html); // hide
+		$html = str_replace('</p>#<p', '</p><p', $html); // hide
+		$html = str_replace('</p><p>[   <p', '</p><p', $html); // hide
+	} else $html = 'Nope, better load in new window.';
 
 	return $html;
 }
@@ -147,14 +149,12 @@ function getFilters()
 	$html = '';
 	$html .= '<nav>';
 	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '') . '">';
-	$html .= 'Sorteer:';
+	$html .= 'Sort: ';
 	$html .= '<select name="group">';
 	$html .= '<option value="blog"' . (($getGroup == 'blog') ? ' selected' : '') . '>Blog</option>';
-	$html .= '<option value="datum"' . (($getGroup == 'datum') ? ' selected' : '') . '>Datum</option>';
+	$html .= '<option value="datum"' . (($getGroup == 'datum') ? ' selected' : '') . '>Date</option>';
 	$html .= '</select>';
-
-	$html .= '<input type="submit" value="Filter"></input>';
-
+	$html .= '<input type="submit"/>';
 	$html .= '</form>';
 	$html .= '</nav>';
 	return $html;

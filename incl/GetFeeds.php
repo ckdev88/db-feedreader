@@ -62,6 +62,7 @@ function getFeeds($groupby = 'datum')
 
 		$pubDate = $entry['pubDate'];
 		$pubDate2 = $pubDate;
+		$shortDate = date("Y-m-d", strtotime($entry['pubDate']));
 		$count++;
 
 		if ($groupby == 'blog') {
@@ -74,7 +75,7 @@ function getFeeds($groupby = 'datum')
 		$html .= '<li class="msg">';
 		$html .= msgLink(
 			(string)$entry['link'],
-			$pubDate,
+			$shortDate,
 			(string)strip_tags($entry['title']),
 			(isset($entry['name']) && $groupby == 'datum' ? $entry['name'] : ''),
 			$entry['new_window']
