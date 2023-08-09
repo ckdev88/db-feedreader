@@ -1,7 +1,8 @@
 <?php
 if (isset($_POST['addfeed'])) echo addFeed();
 ?>
-<div class="cud">
+<?= expandButton('cud'); ?>
+<div class="cud" id="cud">
 	<h2>CUD</h2>
 	<form method="post">
 		<table cellpadding=0 cellspacing=0>

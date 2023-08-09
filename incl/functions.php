@@ -71,7 +71,8 @@ function getFeedsArr()
 
 function expandButton($count)
 {
-	return '<button href="#" onclick="javascript:expand(' . $count . ')" id="msg-description-button' . $count . '">+</button>';
+	if (is_numeric($count)) return '<button href="#" onclick="javascript:expand(' . $count . ')" id="msg-description-button' . $count . '">+</button>';
+	else return '<button href="#" onclick="javascript:expand(\'' . $count . '\')" id="button-' . $count . '">+</button>';
 }
 
 function msgDescription($count, $date, $host, $title, $description, $link)

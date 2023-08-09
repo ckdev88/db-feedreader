@@ -1,10 +1,9 @@
 function expand(id) {
-	var descr = document.getElementById("msg-description" + id);
-	var btn = document.getElementById("msg-description-button" + id);
-	descr.classList.toggle("show-description");
-	descr.onclick = function () {
-		this.classList.toggle("show-description");
+	let ele = id.toString();
+	let descr = document.getElementById(id);
+	descr.classList.toggle("show");
+	let btn = document.getElementById("button-" + id);
+	this.onclick = function () {
 		btn.innerHTML = btn.innerHTML == "+" ? "-" : "+";
 	};
-	btn.innerHTML = btn.innerHTML == "+" ? "-" : "+";
 }
