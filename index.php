@@ -32,18 +32,16 @@ if (isset($DATA['newsurl'])) {
 		<header><img src="img/ck-feed-reader-logo.png" alt="CK Feed Reader" height="24" width="157" /></header>
 		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
 		<main>
-
-			<?php require('./components/CrudFeeds.php'); ?>
 			<?php
 			echo getFilters();
 			echo getFeeds($getGroup);
+			require('./components/CrudFeeds.php');
 			?>
 		</main>
 		<footer id="page-footer">
 			<div class="container">© Cors, Frontend Developer 2023</div>
 		</footer>
 	</div>
-	<script src="./script.js"></script>
 </body>
 
 </html>

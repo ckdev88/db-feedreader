@@ -147,8 +147,7 @@ function getFilters()
 	} else
 		$getGroup = 'blog';
 	$html = '';
-	$html .= '<nav>';
-	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '') . '">';
+	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '') . '" id="sort-form">';
 	$html .= 'Sort: ';
 	$html .= '<select name="group">';
 	$html .= '<option value="blog"' . (($getGroup == 'blog') ? ' selected' : '') . '>Blog</option>';
@@ -156,7 +155,6 @@ function getFilters()
 	$html .= '</select>';
 	$html .= '<input type="submit"/>';
 	$html .= '</form>';
-	$html .= '</nav>';
 	return $html;
 }
 //		https://github.com/impressivewebs/frontend-feeds#top-front-end-bloggers
