@@ -25,6 +25,8 @@ if (isset($DATA['newsurl'])) {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Feed reader, input the feed and get links to the articles posted there, filtered by date per feed." />
 	<meta name="author" content="CK Dev." />
+	<link rel="manifest" href="/manifest.json" />
+	<meta name="theme-color" content="#3367D6">
 </head>
 
 <body>
