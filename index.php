@@ -22,6 +22,7 @@ if (isset($DATA['newsurl'])) {
 	<style type="text/css">
 		<?php include('./styles.css'); ?>
 	</style>
+	<!-- <link rel="stylesheet" href="./styles.css" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Feed reader, input the feed and get links to the articles posted there, filtered by date per feed." />
 	<meta name="author" content="CK Dev." />
@@ -32,14 +33,14 @@ if (isset($DATA['newsurl'])) {
 <body>
 	<div class="container">
 		<header><img src="img/ck-feed-reader-logo.png" alt="CK Feed Reader" height="24" width="157" /></header>
-		<article id="nieuwsartikel"><?php echo getArticle($getNewsUrl); ?></article>
+		<?php echo getArticle($getNewsUrl); ?>
 		<main>
 			<?php
 			echo getFilters();
 			echo getFeeds($getGroup);
-			require('./components/CrudFeeds.php');
 			?>
 		</main>
+		<aside><?php require('./components/CrudFeeds.php'); ?></aside>
 		<footer id="page-footer">
 			<div class="container">© Cors, Frontend Developer 2023</div>
 		</footer>

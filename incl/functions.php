@@ -105,7 +105,7 @@ function msgLink($link, $date, $title, $host = '', $newWindow = 1)
 
 
 function getArticle($url = false)
-{ // non-active, too primitive to use in most articles, TODO: remove or improve
+{
 	if (!$url) return '';
 	$lump = file_get_contents($url);
 	$start_tag = '"markdown":"';
@@ -134,6 +134,7 @@ function getArticle($url = false)
 		$html = str_replace('</p>#<p', '</p><p', $html); // hide
 		$html = str_replace('</p>#<p', '</p><p', $html); // hide
 		$html = str_replace('</p><p>[   <p', '</p><p', $html); // hide
+		$html = '<article id="nieuwsartikel">' . $html . '</article>';
 	} else $html = 'Nope, better load in new window.';
 
 	return $html;
