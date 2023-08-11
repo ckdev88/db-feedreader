@@ -26,6 +26,7 @@ if (isset($_POST['addfeed'])) echo addFeed();
 			<option value="864000">10</option>
 			<option value="1728000">20</option>
 			<option value="3456000">40</option>
+			<option value="6912000">80</option>
 		</select>
 	</div>
 	<div class="cud-nw"><label for="chk-new-window" class="sr-only">Open in new window</label><input id="chk-new-window" type="checkbox" name="addfeed-new-window" value="true" /></div>
@@ -40,10 +41,10 @@ if (isset($_POST['addfeed'])) echo addFeed();
 	foreach ($listFeeds as $feed) {
 		if ($feed->url == '') continue;
 		if ($feed->hidden === true) continue; ?>
-		<div><label for="updatefield-<?= $feed->id ?>-name" class="sr-only"></label><input type="text" id="updatefield-<?= $feed->id ?>-name" name="updatefield[<?= $feed->id ?>][]name" value="<?= $feed->name ?>" /></div>
-		<div><label for="updatefield-<?= $feed->id ?>-url" class="sr-only"></label><input type="text" id="updatefield-<?= $feed->id ?>-url" name="updatefield[<?= $feed->id ?>][]url" value="<?= $feed->url ?>" /></div>
-		<div><label for="updatefield-<?= $feed->id ?>-suffix" class="sr-only"></label><input type="text" id="updatefield-<?= $feed->id ?>-suffix" name="updatefield[<?= $feed->id ?>][]suffix" value="<?= $feed->rss_suffix ?>" /></div>
-		<div><label for="updatefield-<?= $feed->id ?>-interval" class="sr-only"></label>
+		<div class="cud-name"><label for="updatefield-<?= $feed->id ?>-name" class="sr-only"></label><input type="text" id="updatefield-<?= $feed->id ?>-name" name="updatefield[<?= $feed->id ?>][]name" value="<?= $feed->name ?>" /></div>
+		<div class="cud-url"><label for="updatefield-<?= $feed->id ?>-url" class="sr-only"></label><input type="text" id="updatefield-<?= $feed->id ?>-url" name="updatefield[<?= $feed->id ?>][]url" value="<?= $feed->url ?>" /></div>
+		<div class="cud-suffix"><label for="updatefield-<?= $feed->id ?>-suffix" class="sr-only"></label><input type="text" id="updatefield-<?= $feed->id ?>-suffix" name="updatefield[<?= $feed->id ?>][]suffix" value="<?= $feed->rss_suffix ?>" /></div>
+		<div class="cud-interval"><label for="updatefield-<?= $feed->id ?>-interval" class="sr-only"></label>
 			<select id="updatefield-<?= $feed->id ?>-interval" name="updatefield[<?= $feed->id ?>][]interval">
 				<option value="86400" <?= ($feed->interval === 86400 || '') ? 'selected' : ''; ?>>1</option>
 				<option value="259200" <?= ($feed->interval === 259200 || '') ? 'selected' : ''; ?>>3</option>
@@ -51,10 +52,11 @@ if (isset($_POST['addfeed'])) echo addFeed();
 				<option value="864000" <?= ($feed->interval == 864000) ? 'selected' : ''; ?>>10</option>
 				<option value="1728000" <?= ($feed->interval == 1728000) ? 'selected' : ''; ?>>20</option>
 				<option value="3456000" <?= ($feed->interval == 3456000) ? 'selected' : ''; ?>>40</option>
+				<option value="6912000" <?= ($feed->interval == 6912000) ? 'selected' : ''; ?>>80</option>
 			</select>
 		</div>
-		<div><label for="chk-<?= $feed->id ?>-new-window" class="sr-only">Open in new window</label><input id="chk-<?= $feed->id ?>-new-window" type="checkbox" name="updatefield[<?= $feed->id ?>][]new_window" <?= ($feed->new_window ? ' checked' : '') ?> /></div>
-		<div><label for="chk-<?= $feed->id ?>-remove" class="sr-only">Remove this feed</label><input id="chk-<?= $feed->id ?>-remove" type="checkbox" name="updatefield[<?= $feed->id ?>][]hidden" <?= ($feed->hidden ? ' checked' : '') ?> /></div>
+		<div class="cud-nw"><label for="chk-<?= $feed->id ?>-new-window" class="sr-only">Open in new window</label><input id="chk-<?= $feed->id ?>-new-window" type="checkbox" name="updatefield[<?= $feed->id ?>][]new_window" <?= ($feed->new_window ? ' checked' : '') ?> /></div>
+		<div class="cud-rw"><label for="chk-<?= $feed->id ?>-remove" class="sr-only">Remove this feed</label><input id="chk-<?= $feed->id ?>-remove" type="checkbox" name="updatefield[<?= $feed->id ?>][]hidden" <?= ($feed->hidden ? ' checked' : '') ?> /></div>
 	<?php
 	}
 	?>
