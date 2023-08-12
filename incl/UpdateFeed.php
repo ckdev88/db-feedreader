@@ -11,7 +11,6 @@ function UpdateFeeds()
 				. $feed->id . ' - '
 				. $feed->name . ': '
 				. $feed->url
-				. $feed->rss_suffix . ' _blank: '
 				. $feed->new_window
 				. '</li>';
 		}

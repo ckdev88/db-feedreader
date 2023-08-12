@@ -12,12 +12,10 @@ function addFeed()
 			if (
 				$_POST['addfeed-name'] != ''
 				&& $_POST['addfeed-url'] != ''
-				&& isset($_POST['addfeed-rss-suffix'])
 			) {
 				$newFeed = [
 					'name' => $_POST['addfeed-name'],
 					'url'       => $_POST['addfeed-url'],
-					'rss_suffix'  => $_POST['addfeed-rss-suffix'],
 					'interval'  => (int)$_POST['addfeed-interval'],
 					'new_window'  => (isset($_POST['addfeed-new-window']) ? true : false),
 					'hidden'  => (isset($_POST['hidden']) ? true : false),
@@ -60,7 +58,6 @@ function ListFeedsUpdate()
 					$updateFeed = [
 						'name' => $feed[0],
 						'url' => $feed[1],
-						'rss_suffix' => $feed[2],
 						'interval' => (int)$feed[3],
 						'new_window' => (!isset($feed[4]) ? false : true),
 						'hidden' => (!isset($feed[5]) ? false : true)

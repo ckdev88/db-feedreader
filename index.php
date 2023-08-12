@@ -42,7 +42,7 @@ if (isset($DATA['newsurl'])) {
 		</main>
 		<aside><?php require('./components/CrudFeeds.php'); ?></aside>
 		<footer id="page-footer">
-			<div class="container">© Cors, Frontend Developer 2023</div>
+			© Cors, Frontend Developer 2023
 		</footer>
 	</div>
 </body>

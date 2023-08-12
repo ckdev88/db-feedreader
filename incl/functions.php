@@ -61,7 +61,6 @@ function getFeedsArr()
 		if ($val->url != '') {
 			$retFeedsArr[$key]['name'] = $val->name;
 			$retFeedsArr[$key]['url'] = $val->url;
-			$retFeedsArr[$key]['rss_suffix'] = $val->rss_suffix;
 			$retFeedsArr[$key]['interval'] = $val->interval;
 			$retFeedsArr[$key]['new_window'] = $val->new_window;
 		}

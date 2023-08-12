@@ -10,9 +10,18 @@ function getFeeds($groupby = 'datum')
 	$newArray = array();
 	$rnCount = 2000;
 	foreach ($feeds as $feedKey => $feedVal) {
-		$xml = simplexml_load_file($feedVal['url'] . $feedVal['rss_suffix'], "SimpleXMLElement", LIBXML_NOERROR |  LIBXML_ERR_NONE);
-		// continue;
-		if (!isset($xml) || $xml == '') continue;
+		libxml_use_internal_errors(true);
+		$xml = simplexml_load_file($feedVal['url']);
+
+		if ($xml === false) {
+			echo "Failed loading XML\n";
+			foreach (libxml_get_errors() as $error) {
+				echo '<br/>' . $feedVal['name'] . "\t", $error->message;
+			}
+			echo '<br/>Empty: ' . $feedVal['name'];
+			continue;
+		}
+
 		$xmlPath = $xml->xpath('//item');
 		if (empty($xmlPath)) { // exception 1, in case of hidde.blog & front-end.social
 			$xmlPath = $xml;
