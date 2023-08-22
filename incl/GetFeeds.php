@@ -91,16 +91,6 @@ function getFeeds($groupby = 'datum')
 			(isset($entry['name']) && $groupby == 'datum' ? $entry['name'] : ''),
 			$entry['new_window']
 		);
-		/*
-		$html .= msgDescription(
-			$count,
-			$pubDate,
-			(isset(parse_url($entry['link'])['host']) ? str_replace('www.', '', parse_url($entry['link'])['host']) : ''),
-			strip_tags($entry['title']),
-			$entry['description'],
-			$entry['link']
-		);
-		*/
 		$html .= '</li>';
 	}
 	$html .= '</ul>';

@@ -45,6 +45,7 @@ if (isset($DATA['newsurl'])) {
 			© Cors, Frontend Developer 2023
 		</footer>
 	</div>
+<script src="incl/script.js"></script>
 </body>
 
 </html>

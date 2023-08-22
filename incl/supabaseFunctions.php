@@ -23,8 +23,6 @@ function addFeed()
 
 				try {
 					$data = $db->insert($newFeed);
-					print_r($data);
-					//returns an array with the new register data
 				} catch (Exception $e) {
 					echo $e->getMessage();
 				}
@@ -58,9 +56,9 @@ function ListFeedsUpdate()
 					$updateFeed = [
 						'name' => $feed[0],
 						'url' => $feed[1],
-						'interval' => (int)$feed[3],
-						'new_window' => (!isset($feed[4]) ? false : true),
-						'hidden' => (!isset($feed[5]) ? false : true)
+						'interval' => (int)$feed[2],
+						'new_window' => (!isset($feed[3]) ? false : true),
+						'hidden' => (!isset($feed[4]) ? false : true)
 					];
 					$data = $db->update((string)$key, $updateFeed);
 				}
