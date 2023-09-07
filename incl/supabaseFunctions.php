@@ -17,7 +17,6 @@ function addFeed()
 					'name' => $_POST['addfeed-name'],
 					'url'       => $_POST['addfeed-url'],
 					'interval'  => (int)$_POST['addfeed-interval'],
-					'new_window'  => (isset($_POST['addfeed-new-window']) ? true : false),
 					'hidden'  => (isset($_POST['hidden']) ? true : false),
 				];
 
@@ -57,8 +56,7 @@ function ListFeedsUpdate()
 						'name' => $feed[0],
 						'url' => $feed[1],
 						'interval' => (int)$feed[2],
-						'new_window' => (!isset($feed[3]) ? false : true),
-						'hidden' => (!isset($feed[4]) ? false : true)
+						'hidden' => (!isset($feed[3]) ? false : true)
 					];
 					$data = $db->update((string)$key, $updateFeed);
 				}

@@ -34,7 +34,6 @@ function getFeeds($groupby = 'datum')
 				$newArray[$feedKey][$rnCount]['pubDate'] = (string)$xmll->updated;
 				$newArray[$feedKey][$rnCount]['name'] = $feedVal['name'];
 				$newArray[$feedKey][$rnCount]['interval'] = $feedVal['interval'];
-				$newArray[$feedKey][$rnCount]['new_window'] = $feedVal['new_window'];
 				$rnCount++;
 			}
 		} else {
@@ -50,7 +49,6 @@ function getFeeds($groupby = 'datum')
 				$newArray[$feedKey][$itemKey]['pubDate'] = (string)$itemVal->pubDate;
 				$newArray[$feedKey][$itemKey]['name'] = $feedVal['name'];
 				$newArray[$feedKey][$itemKey]['interval'] = $feedVal['interval'];
-				$newArray[$feedKey][$itemKey]['new_window'] = $feedVal['new_window'];
 			}
 		}
 	}
@@ -88,8 +86,7 @@ function getFeeds($groupby = 'datum')
 			(string)$entry['link'],
 			$shortDate,
 			(string)strip_tags($entry['title']),
-			(isset($entry['name']) && $groupby == 'datum' ? $entry['name'] : ''),
-			$entry['new_window']
+			(isset($entry['name']) && $groupby == 'datum' ? $entry['name'] : '')
 		);
 		$html .= '</li>';
 	}

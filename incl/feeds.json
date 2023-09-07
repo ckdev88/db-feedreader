@@ -3,90 +3,90 @@
 		"name": "Hackernoon Coding",
 		"url": "https://hackernoon.com/tagged/coding",
 		"rss_suffix": "/feed",
-		"new_window": false
+		
 	},
 	{
 		"name": "Hackernoon Frontend",
 		"url": "https://hackernoon.com/tagged/frontend",
 		"rss_suffix": "/feed",
-		"new_window": false
+		
 	},
 	{
 		"name": "Hackernoon JS",
 		"url": "https://hackernoon.com/tagged/javascript",
 		"rss_suffix": "/feed",
-		"new_window": false
+		
 	},
 	{
 		"name": "Hackernoon React",
 		"url": "https://hackernoon.com/tagged/react",
 		"rss_suffix": "/feed",
-		"new_window": false
+		
 	},
 	{
 		"name": "Hackernoon CSS",
 		"url": "https://hackernoon.com/tagged/css",
 		"rss_suffix": "/feed",
-		"new_window": false
+		
 	},
 	{
 		"name": "Dmitri Pavlutin",
 		"url": "https://dmitripavlutin.com",
 		"rss_suffix": "/rss.xml",
-		"new_window": true
+		
 	},
 	{
 		"name": "david walsh",
 		"url": "https://davidwalsh.name",
 		"rss_suffix": "/feed",
-		"new_window": true
+		
 	},
 	{
 		"name": "chromium blog",
 		"url": "https://blog.chromium.org/",
 		"rss_suffix": "feeds/posts/default",
-		"new_window": true
+		
 	},
 	{
 		"name": "HDV WP",
 		"url": "https://hidde.blog",
 		"rss_suffix": "/feed",
-		"new_window": false
+		
 	},
 	{
 		"name": "bitsofcode",
 		"url": "https://bitsofco.de",
 		"rss_suffix": "/rss",
-		"new_window": true
+		
 	},
 	{
 		"name": "mozilla",
 		"url": "https://developer.mozilla.org/en-US/blog",
 		"rss_suffix": "/rss.xml",
-		"new_window": true
+		
 	},
 	{
 		"name": "vuejs",
 		"url": "https://news.vuejs.org",
 		"rss_suffix": "/feed.xml",
-		"new_window": true
+		
 	},
 	{
 		"name": "medium shan000",
 		"url": "https://medium.com/@upekshadilshan000",
 		"rss_suffix": "/feed",
-		"new_window": true
+		
 	},
 	{
 		"name": "codeburst",
 		"url": "https://codeburst.io/",
 		"rss_suffix": "/feed",
-		"new_window": true
+		
 	},
 	{
 		"name": "medium zac",
 		"url": "https://medium.com/@zac_heisey",
 		"rss_suffix": "/feed",
-		"new_window": true
+		
 	}
 ]
