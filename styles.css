@@ -74,18 +74,15 @@ aside{border-bottom:1px dashed #eee;border-top:1px dashed #eee;padding:1rem 0;ma
 	max-width:100%;
 	display:grid;
 	gap:5px;
-	/* grid-auto-columns: 125fr 215fr 50fr 40fr 20fr 20fr;  */
-	/* @media screen and (max-width:840px){grid-auto-columns:auto} */
 	max-width:660px;
 	min-width:300px;
 }
 .cud div{position:relative;}
-.cud-submit{grid-column: 1/6;}
+.cud-submit{grid-column: 1/5;}
 
 .cud input[type=text],.cud select{color:white;padding-left:0;margin:0;background:transparent;border-width:0 0 1px 0;border-style:solid;border-color:#ffffffaa;}	
 .cud select option{color:black;background:white;}
 .cud input{margin-left:0;margin-right:0;padding-left:0;padding-right:0;}
-
 
 .cud-rm{width:20px;}
 .cud-interval,.cud-interval select{width:45px;max-width:45px;}
