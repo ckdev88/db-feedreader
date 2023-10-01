@@ -90,8 +90,7 @@ function msgDescription($count, $date, $host, $title, $description, $link)
 function msgLink($link, $date, $title, $host = '')
 {
 	$html = '';
-	$html .= '<a href="?group=' . (isset($_GET['group']) ? $_GET['group'] : 'blog') . '&newsurl=' . $link . '">';
-
+	$html .= '<a href="' . $link . '" target="_blank">';
 	$html .= '<div class="pubdate">' . $date . '</div>';
 	$html .= $title . ($host != '' ? '<span class="host"> - ' . $host . '</span>' : '');
 	$html .= '</a>';

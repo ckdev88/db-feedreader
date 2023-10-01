@@ -63,7 +63,7 @@ function getFeeds($groupby = 'datum')
 		});
 	}
 	if (empty($entries)) $html .= 'no entries';
-	$html .= '<ul>';
+	$html .= '<ul id="rss">';
 	$tmpBlogname = '';
 	foreach ($entries as $entry) {
 		if (!isset($entry['interval']) || !isset($entry['pubDate'])) continue;
