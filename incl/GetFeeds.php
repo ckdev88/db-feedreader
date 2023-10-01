@@ -41,10 +41,7 @@ function getFeeds($groupby = 'datum')
 				$newArray[$feedKey][$itemKey]['title'] = (string)$itemVal->title;
 				if ($newArray[$feedKey][$itemKey]['title'] == '') {
 					$newArray[$feedKey][$itemKey]['title'] = (string)$itemVal->description;
-					$newArray[$feedKey][$itemKey]['description'] = ''; // TODO: not functioning properly
-				} else {
-					$newArray[$feedKey][$itemKey]['description'] = (string)$itemVal->description; // TODO: not functioning properly
-				}
+				}	
 				$newArray[$feedKey][$itemKey]['link'] = (string)$itemVal->link;
 				$newArray[$feedKey][$itemKey]['pubDate'] = (string)$itemVal->pubDate;
 				$newArray[$feedKey][$itemKey]['name'] = $feedVal['name'];
