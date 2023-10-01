@@ -67,16 +67,9 @@ function getFeedsArr()
 	return $retFeedsArr;
 }
 
-function expandButton($count)
-{
-	if (is_numeric($count)) return '<button href="#" onclick="javascript:expand(' . $count . ')" id="msg-description-button' . $count . '">+</button>';
-	else return '<button href="#" onclick="javascript:expand(\'' . $count . '\')" id="button-' . $count . '">+</button>';
-}
-
 function msgLink($link, $date, $title, $host = '')
 {
-	$html = '';
-	$html .= '<a href="' . $link . '" target="_blank">';
+	$html = '<a href="' . $link . '" target="_blank">';
 	$html .= '<div class="pubdate">' . $date . '</div>';
 	$html .= $title . ($host != '' ? '<span class="host"> - ' . $host . '</span>' : '');
 	$html .= '</a>';
@@ -101,4 +94,3 @@ function getFilters()
 	$html .= '</form>';
 	return $html;
 }
-//		https://github.com/impressivewebs/frontend-feeds#top-front-end-bloggers
