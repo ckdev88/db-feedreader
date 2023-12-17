@@ -1,6 +1,6 @@
 {
-	"short_name": "CK Feed Reader",
-	"name": "CK Feed Reader, made by Cors",
+	"short_name": "Feed Reader",
+	"name": "Feed Reader, by Cors",
 
 	"icons": [
 		{
@@ -51,7 +51,7 @@
 		}
 	],
 
-	"description": "CK Feed Reader, made by Cors.",
+	"description": "Feed Reader, by Cors.",
 	"theme_color": "#3367D6",
 	"lang": "en-US",
 	"background_color": "#3367D6",

@@ -13,23 +13,22 @@ if (isset($DATA['group'])) {
 <html lang="en">
 
 <head>
-	<title>CK Feed Reader</title>
+	<title>Feeds</title>
 	<style type="text/css">
 		<?php include('./styles.css');
 		?>
 	</style>
-	<!-- <link rel="stylesheet" href="./styles.css" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description"
 		content="Feed reader, input the feed and get links to the articles posted there, filtered by date per feed." />
-	<meta name="author" content="CK Dev." />
+	<meta name="author" content="Cors" />
 	<link rel="manifest" href="/manifest.json" />
 	<meta name="theme-color" content="#3367D6">
 </head>
 
 <body>
 	<div class="container">
-		<header><img src="img/ck-feed-reader-logo.png" alt="CK Feed Reader" height="24" width="157" /></header>
+		<!-- <header><img src="img/ck-feed-reader-logo.png" alt="CK Feed Reader" height="24" /></header> -->
 		<main>
 			<?php
 			echo getFilters();
@@ -40,7 +39,7 @@ if (isset($DATA['group'])) {
 			<?php require('./components/CrudFeeds.php'); ?>
 		</aside>
 		<footer id="page-footer">
-			© Cors, Frontend Developer 2023
+			© Cors - 2023
 		</footer>
 	</div>
 	<script src="incl/script.js"></script>

@@ -84,13 +84,12 @@ function getFilters()
 	} else
 		$getGroup = 'blog';
 	$html = '';
-	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '') . '" id="sort-form">';
+	$html .= '<form action="?group=' . (isset($_GET['group']) ? $_GET['group'] : '') . '&interval=' . (isset($_GET['interval']) ? $_GET['interval'] : '') . '" id="sort-form" onChange="submit()">';
 	$html .= 'Sort: ';
 	$html .= '<select name="group">';
 	$html .= '<option value="blog"' . (($getGroup == 'blog') ? ' selected' : '') . '>Blog</option>';
 	$html .= '<option value="datum"' . (($getGroup == 'datum') ? ' selected' : '') . '>Date</option>';
 	$html .= '</select>';
-	$html .= '<input type="submit"/>';
 	$html .= '</form>';
 	return $html;
 }

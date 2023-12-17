@@ -1,4 +1,5 @@
 <?php
+// TODO: add support for ATOM feeds, like for https://2ality.com/feeds/posts.atom
 function getFeeds($groupby = 'datum')
 {
 	$feeds = getFeedsArr();
