@@ -28,7 +28,6 @@ if (isset($DATA['group'])) {
 
 <body>
 	<div class="container">
-		<!-- <header><img src="img/ck-feed-reader-logo.png" alt="CK Feed Reader" height="24" /></header> -->
 		<main>
 			<?php
 			echo getFilters();

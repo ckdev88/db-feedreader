@@ -8,12 +8,12 @@ h3{font-size:1rem;font-weight:bold;padding:0;margin:0;}
 a{color:#fff;}
 a{cursor:pointer}
 main,main>ul,aside{max-width:660px;}
-main{margin-top:0;}
+main{margin-top:0;margin:10px;}
 th,td{text-align:left;}
 p{margin-bottom:1em;}
-footer{margin-top:1rem;}
+footer{margin:1rem;}
 input [type=radio],input[type=checkbox],select,input[type=submit]{cursor:pointer}
-aside{border-bottom:1px dashed #eee;border-top:1px dashed #eee;padding:1rem 0;margin:1rem 0;}
+aside{border-bottom:1px dashed #eee;border-top:1px dashed #eee;padding:1rem 0;margin:10px;}
 
 .msg{position:relative;}
 .msg>h3,.msg>a{border-bottom:1px dotted #333;padding:.4rem 0;text-decoration:none;transition:background-color .2s ease-in-out;display:block;}
@@ -32,20 +32,20 @@ line-height:2em;display:block;text-decoration:none;background-color:rgba(255,255
 padding:0 1em;transition:background-color .2s linear;
 text-decoration:.2s linear;
 border-bottom:1px dotted rgba(255,255,255,.1)}
-.container{max-width:660px;min-width:300px;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:20px;}
+.container{max-width:660px;min-width:300px;}
+@media screen and (min-width:1300px){
+	main{float:left;}
+	aside{float:right;border-bottom:0;border-top:0;}
+	footer{clear:both;}	
+	.container{max-width:100%;}
+}
 
 .sr-only{overflow:hidden;width:0px;display:block;height:0}
-#sort-form{display:flex;justify-content:flex-end}
+#sort-form{display:flex;justify-content:flex-end;align-items:center;}
 
-.cud{
-	margin:.25rem 0;
-	max-width:100%;
-	display:grid;
-	gap:5px;
-	min-width:300px;
-}
+.cud{margin:.25rem 0;max-width:100%;display:grid;gap:5px;min-width:300px;}
 .cud div{position:relative;}
-.cud-submit{grid-column: 1/5;}
+.cud-submit{grid-column: 1/5;margin-bottom:1rem}
 .cud input[type=text],.cud select{color:white;padding-left:0;margin:0;background:transparent;border-width:0 0 1px 0;border-style:solid;border-color:#ffffffaa;}	
 .cud select option{color:black;background:white;}
 .cud input{margin-left:0;margin-right:0;padding-left:0;padding-right:0;}
